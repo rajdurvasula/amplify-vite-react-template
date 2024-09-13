@@ -21,18 +21,25 @@ function App() {
     client.models.Todo.create({ content: window.prompt("Todo content") });
   }
 
-  // added delete functionality
+  // change 1: added delete functionality
   function deleteTodo(id: string) {
     client.models.Todo.delete({ id })
   }
 
-  // added Authenticator UI component
-  // encapsulate <main>
-  return (
-    <Authenticator>
-      {({ signOut }) => (
+  // change 1: added delete functionality
+  // change 2: added Authenticator UI component
+  // change 2: encapsulate <main> tag
+  // change 3: user-specific Todo list
+  //return (
+  //  <Authenticator>
+  //    {({ signOut }) => (
+  //    <main>
+  //    <h1> My todos</h1>
+    return (
+      <Authenticator>
+        {({ signOut, user}) => (
         <main>
-        <h1>My todos</h1>
+        <h1>{user?.signInDetails?.loginId}'s Todos</h1>
         <button onClick={createTodo}>+ new</button>
         <ul>
           {todos.map((todo) => (
